@@ -25,7 +25,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
       - run: |
           npm i
-          npm i -g @tltdh61/dotenvrtdb
+          # npm i -g @tltdh61/dotenvrtdb
           npm i -g @o861runners/nmp
       - name: Check npm package files
         run: npm pack --dry-run
@@ -35,4 +35,5 @@ jobs:
           # NPM_TOKEN_O2516PM0510: ${{ secrets.NPM_TOKEN_O2516PM0510 }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          dotenvrtdb --eUrl "$DOTENVRTDB_URL" -- nmp publish
+          # dotenvrtdb --eUrl "$DOTENVRTDB_URL" -- nmp publish
+          nmp publish
