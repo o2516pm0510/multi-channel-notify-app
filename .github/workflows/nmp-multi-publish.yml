@@ -13,6 +13,7 @@ on:
 permissions:
   id-token: write # Required for OIDC
   contents: read
+  packages: write
 jobs:
   nmp-multi-publish:
     runs-on: ubuntu-latest
@@ -26,6 +27,8 @@ jobs:
           npm i
           npm i -g @tltdh61/dotenvrtdb
           npm i -g @o861runners/nmp
+      - name: Check npm package files
+        run: npm pack --dry-run
       - name: Publish to multi-registry
         env:
           DOTENVRTDB_URL: ${{ secrets.DOTENVRTDB_URL }}
