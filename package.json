@@ -18,7 +18,9 @@
     "dev": "node bin/multi-notify.js",
     "notify": "node bin/multi-notify.js",
     "start": "node bin/multi-notify.js",
-    "pack:check": "npm pack --dry-run"
+    "pack:check": "npm pack --dry-run",
+    "multi-notify": "dotenvrtdb --e .env -- npx @o25.16pm.0510/multi-notify",
+    "notify--only--ntfy": "node bin/multi-notify.js --only ntfy"
   },
   "keywords": [
     "notification",

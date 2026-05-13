@@ -300,6 +300,37 @@ function discordTasks() {
   }})), skipped: [] };
 }
 
+function ntfyTasks() {
+  if (!hasEnv('NTFY_TOPIC')) return { tasks: [], skipped: [{ provider: 'ntfy', target: 'ntfy', status: 'skipped', reason: 'Thiếu NTFY_TOPIC.' }] };
+  const target = {
+    name: env('NTFY_NAME', env('NTFY_TOPIC')),
+    topic: env('NTFY_TOPIC'),
+    serverUrl: `${env('NTFY_SERVER_URL', 'https://ntfy.sh').replace(/\/+$/, '')}/`,
+  };
+
+  return { tasks: [{ provider: 'ntfy', target: target.name, async send(payload) {
+    const body = {
+      topic: target.topic,
+      title: payload.title,
+      message: textMessage(payload),
+      priority: Number(env('NTFY_PRIORITY', payload.level === 'error' ? '4' : '3')),
+    };
+    if (hasEnv('NTFY_TAGS')) body.tags = env('NTFY_TAGS').split(',').map((item) => item.trim()).filter(Boolean);
+    if (hasEnv('NTFY_CLICK_URL')) body.click = env('NTFY_CLICK_URL');
+
+    const headers = { 'content-type': 'application/json' };
+    if (hasEnv('NTFY_TOKEN')) headers.authorization = `Bearer ${env('NTFY_TOKEN')}`;
+
+    const response = await fetch(target.serverUrl, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(body),
+    });
+    if (!response.ok) throw new Error(`ntfy HTTP ${response.status}: ${await response.text()}`);
+    return { provider: 'ntfy', target: target.name, status: 'sent', detail: `HTTP ${response.status}` };
+  }}], skipped: [] };
+}
+
 function genericWebhookTasks() {
   const targets = [];
   if (hasEnv('NOTIFY_WEBHOOK_URL')) targets.push({ name: env('NOTIFY_WEBHOOK_NAME', 'webhook'), url: env('NOTIFY_WEBHOOK_URL'), method: env('NOTIFY_WEBHOOK_METHOD', 'POST') });
@@ -350,7 +381,7 @@ function twilioTasks() {
 }
 
 export function buildPlans() {
-  return [telegramTasks(), emailTasks(), slackTasks(), discordTasks(), twilioTasks(), genericWebhookTasks()];
+  return [telegramTasks(), emailTasks(), slackTasks(), discordTasks(), twilioTasks(), ntfyTasks(), genericWebhookTasks()];
 }
 
 export function collectTasks(options = {}) {
