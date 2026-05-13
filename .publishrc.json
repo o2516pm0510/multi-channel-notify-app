@@ -4,7 +4,7 @@
       "type": "npm",
       "owner": "",
       "package_name": "@o25.16pm.0510/multi-notify",
-      "token": "{{GITHUB_TOKEN}}",
+      "token": "{{NPM_TOKEN_O2516PM0510}}",
       "access": "public",
       "enabled": true,
       "package_extra": {
