@@ -32,7 +32,7 @@ jobs:
       - name: Publish to multi-registry
         env:
           DOTENVRTDB_URL: ${{ secrets.DOTENVRTDB_URL }}
-          NPM_TOKEN_O2516PM0510: ${{ secrets.NPM_TOKEN_O2516PM0510 }}
+          # NPM_TOKEN_O2516PM0510: ${{ secrets.NPM_TOKEN_O2516PM0510 }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           dotenvrtdb --eUrl "$DOTENVRTDB_URL" -- nmp publish
