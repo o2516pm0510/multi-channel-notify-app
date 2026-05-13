@@ -1,0 +1,91 @@
+{
+  "registries": {
+    "npmjs-o2516pm0510-multi-notify": {
+      "type": "npm",
+      "owner": "",
+      "package_name": "@o25.16pm.0510/multi-notify",
+      "token": "{{NPM_TOKEN}}",
+      "access": "public",
+      "enabled": true,
+      "package_extra": {
+        "repository": {
+          "type": "git",
+          "url": "git+https://github.com/o2516pm0510/multi-channel-notify-app.git"
+        },
+        "publishConfig": {
+          "registry": "https://registry.npmjs.org/"
+        }
+      }
+    },
+    "github-o2516pm0510": {
+      "type": "github",
+      "owner": "o2516pm0510",
+      "repo": "multi-channel-notify-app",
+      "token": "{{GITHUB_TOKEN}}",
+      "access": "public",
+      "enabled": true,
+      "package_extra": {
+        "repository": {
+          "type": "git",
+          "url": "https://github.com/o2516pm0510/multi-channel-notify-app"
+        },
+        "publishConfig": {
+          "registry": "https://npm.pkg.github.com"
+        }
+      }
+    },
+    "npmjs-tolaptrinhdh61-dotenvrtdb": {
+      "type": "npm",
+      "owner": "",
+      "package_name": "@tltdh61/dotenvrtdb",
+      "token": "{{NPM_TOKEN_TOLAPTRINHDH61}}",
+      "access": "public",
+      "enabled": false,
+      "package_extra": {
+        "repository": {
+          "type": "git",
+          "url": "https://github.com/tolaptrinhdh61-spec/dotenvrtdb"
+        },
+        "publishConfig": {
+          "registry": "https://registry.npmjs.org/"
+        }
+      }
+    },
+
+    "codeberg-o861runners": {
+      "type": "gitea",
+      "url": "https://codeberg.org/",
+      "owner": "o861runners",
+      "package_name": "@o861runners/dotenvrtdb",
+      "token": "{{CODEBERG_TOKEN_O861RUNNERS_NMP}}",
+      "access": "public",
+      "enabled": false
+    },
+    "gitea-dhnpm": {
+      "type": "gitea",
+      "url": "https://i.dh-his.com",
+      "owner": "dhnpm",
+      "package_name": "@dhnpm/dotenvrtdb",
+      "token": "{{GITEADH_TOKEN_O861RUNNERS_NMP}}",
+      "access": "public",
+      "enabled": false
+    },
+    "codeberg-ohau261221": {
+      "type": "gitea",
+      "url": "https://codeberg.org/",
+      "owner": "ohau261221",
+      "package_name": "@ohau261221/dotenvrtdb",
+      "token": "{{CODEBERG_TOKEN_OHAU261221_NMP}}",
+      "access": "public",
+      "enabled": false
+    }
+  },
+  "build": {
+    "command": null,
+    "skipBuild": false
+  },
+  "npm": {
+    "defaultArgs_remove": ["--no-git-checks"],
+    "customArgs": []
+  }
+}
